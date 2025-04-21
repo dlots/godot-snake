@@ -9,31 +9,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Download Godot
-        uses: firebelley/setup-godot@v1
-        with:
-          godot-version: 4.4.1  # change to your version
-
-      - name: Export HTML5
-        run: |
-          mkdir -p web
-          godot --headless --export-release "Web" web/index.html
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: web
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+      - name: Godot Export
+        uses: firebelley/godot-export@v6.0.0
